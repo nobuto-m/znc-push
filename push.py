@@ -11,6 +11,7 @@
 import json
 import platform
 import re
+import subprocess
 import time
 import urllib
 import znc
@@ -1073,6 +1074,8 @@ class PushService(object):
             return
 
         try:
+            subprocess.Popen(['timeout', '--signal=SIGINT', '5', 'piglow-test.py'])
+
             request = service.send(context)
 
             if request is None:
